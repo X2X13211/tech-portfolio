@@ -1,4 +1,4 @@
-# TechPortfolio - Платформа IT проектов
+# TechPortfolio1 - Платформа IT проектов
 
 ![GitHub](https://img.shields.io/badge/GitHub-Pages-brightgreen)
 ![React](https://img.shields.io/badge/React-18.2-blue)
