@@ -33,7 +33,7 @@ TechPortfolio - это современная веб-платформа для �
 ![React](https://img.shields.io/badge/React-18.2-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-, **Live version of the website:** [https://x2x13211.github.io/tech-portfolio /](https://x2x13211.github.io/tech-portfolio /)
+, **Live version of the website:** (https://x2x13211.github.io/tech-portfolio /)
 
 ## 🚀 About the project
 
