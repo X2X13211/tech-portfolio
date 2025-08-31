@@ -26,8 +26,49 @@ TechPortfolio - это современная веб-платформа для �
 - **Хостинг**: GitHub Pages
 - **Хранение данных**: Local Storage
 
-## 📦 Установка и запуск
 
+# TechPortfolio - IT Project Platform
+
+![GitHub](https://img.shields.io/badge/GitHub-Pages-brightgreen)
+![React](https://img.shields.io/badge/React-18.2-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+, **Live version of the website:** [https://x2x13211.github.io/tech-portfolio /](https://x2x13211.github.io/tech-portfolio /)
+
+## 🚀 About the project
+
+TechPortfolio is a modern web-based platform for demonstrating IT projects, research, and presentations. The website was created using React and modern web technologies.
+
+## ✨ Opportunities
+
+- 📁 **Project categories**: Filtering by different IT areas
+- 💬 **Comment System**: Users can leave comments
+- ❤️ **Likes**: The opportunity to evaluate projects
+- 🎨 **Responsive Design**: Optimized for mobile devices
+- ⚡ **Interactive UI**: Smooth animations and transitions
+
+## 🛠️ Technologies
+
+- **Frontend**: React 18, Babel
+- **Styles**: CSS3 with Grid and Flexbox
+- **Icons**: Font Awesome 6
+- **Hosting**: GitHub Pages
+- **Data Storage**: Local Storage
+
+## 📦 Installation and launch
+### Local launch
+```bash
+# Clone the repository
+git clone https://github.com/X2X13211/tech-portfolio.git
+
+# Go to
+the cd tech-portfolio project folder
+
+# Open index.html in the browser
+# or use a Live Server
+
+
+## 📦 Установка и запуск
 ### Локальный запуск
 ```bash
 # Клонировать репозиторий
