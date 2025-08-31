@@ -1,960 +1,938 @@
-!DOCTYPE html
-html lang=ru
-head
-    meta charset=UTF-8
-    meta name=viewport content=width=device-width, initial-scale=1.0
-    titleTechPortfolio - Публикация IT проектовtitle
-    script src=httpsunpkg.comreact@18umdreact.development.jsscript
-    script src=httpsunpkg.comreact-dom@18umdreact-dom.development.jsscript
-    script src=httpsunpkg.com@babelstandalonebabel.min.jsscript
-    link rel=stylesheet href=httpscdnjs.cloudflare.comajaxlibsfont-awesome6.4.0cssall.min.css
-    style
-         {
-            margin 0;
-            padding 0;
-            box-sizing border-box;
-            font-family 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechPortfolio - Публикация IT проектов</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
-        
+
         body {
-            background linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height 100vh;
-            color #2d3748;
-            line-height 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #2d3748;
+            line-height: 1.6;
         }
-        
+
         .container {
-            max-width 1200px;
-            margin 0 auto;
-            padding 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        
-         Анимации 
+
+        /* Анимации */
         @keyframes fadeIn {
-            from { opacity 0; transform translateY(30px); }
-            to { opacity 1; transform translateY(0); }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
+
         @keyframes slideIn {
-            from { transform translateX(-50px); opacity 0; }
-            to { transform translateX(0); opacity 1; }
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
-        
+
         @keyframes pulse {
-            0% { transform scale(1); }
-            50% { transform scale(1.05); }
-            100% { transform scale(1); }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-        
+
         @keyframes float {
-            0% { transform translateY(0px); }
-            50% { transform translateY(-8px); }
-            100% { transform translateY(0px); }
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
         }
-        
+
         @keyframes heartBeat {
-            0% { transform scale(1); }
-            15% { transform scale(1.3); }
-            30% { transform scale(1); }
-            45% { transform scale(1.3); }
-            60% { transform scale(1); }
+            0% { transform: scale(1); }
+            15% { transform: scale(1.3); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.3); }
+            60% { transform: scale(1); }
         }
-        
-        .animate-fadeIn {
-            animation fadeIn 0.8s ease-out;
-        }
-        
-        .animate-slideIn {
-            animation slideIn 0.6s ease-out;
-        }
-        
-        .animate-pulse {
-            animation pulse 3s infinite;
-        }
-        
-        .animate-float {
-            animation float 4s ease-in-out infinite;
-        }
-        
-        .heart-beat {
-            animation heartBeat 1s;
-        }
-        
+
+        .animate-fadeIn { animation: fadeIn 0.8s ease-out; }
+        .animate-slideIn { animation: slideIn 0.6s ease-out; }
+        .animate-pulse { animation: pulse 3s infinite; }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .heart-beat { animation: heartBeat 1s; }
+
         header {
-            background rgba(255, 255, 255, 0.08);
-            backdrop-filter blur(15px);
-            border-bottom 1px solid rgba(255, 255, 255, 0.1);
-            padding 1.2rem 0;
-            position sticky;
-            top 0;
-            z-index 1000;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        
+
         .header-content {
-            display flex;
-            justify-content space-between;
-            align-items center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
+
         .logo {
-            font-size 2rem;
-            font-weight 800;
-            background linear-gradient(135deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip text;
-            -webkit-text-fill-color transparent;
-            background-clip text;
-            animation slideIn 0.8s ease-out;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideIn 0.8s ease-out;
         }
-        
+
         nav ul {
-            display flex;
-            list-style none;
-            gap 2rem;
+            display: flex;
+            list-style: none;
+            gap: 2rem;
         }
+
         .project-link.demo-link {
-            background linear-gradient(135deg, #667eea, #764ba2);
-            border 1px solid rgba(255, 255, 255, 0.2);
-            color white;
-            padding 0.8rem 1.6rem;
-            border-radius 20px;
-            text-decoration none;
-            font-weight 500;
-            transition all 0.3s ease;
-            display inline-flex;
-            align-items center;
-            gap 0.6rem;
-            box-shadow 0 4px 15px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.8rem 1.6rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
-        .project-link.demo-linkhover {
-            background linear-gradient(135deg, #5a6fd8, #6a4190);
-            transform translateY(-2px);
-            box-shadow 0 6px 20px rgba(102, 126, 234, 0.4);
-            border-color rgba(255, 255, 255, 0.3);
 
+        .project-link.demo-link:hover {
+            background: linear-gradient(135deg, #5a6fd8, #6a4190);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
         }
+
         .project-link.source-link {
-            background linear-gradient(135deg, #4ecdc4, #44a08d);
-            border 1px solid rgba(255, 255, 255, 0.2);
-            color white;
-            padding 0.8rem 1.6rem;
-            border-radius 20px;
-            text-decoration none;
-            font-weight 500;
-            transition all 0.3s ease;
-            display inline-flex;
-            align-items center;
-            gap 0.6rem;
-            box-shadow 0 4px 15px rgba(78, 205, 196, 0.3);
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.8rem 1.6rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
         }
-        .project-link.source-linkhover {
-            background linear-gradient(135deg, #45bdb5, #3c8f7f);
-            transform translateY(-2px);
-            box-shadow 0 6px 20px rgba(78, 205, 196, 0.4);
-            border-color rgba(255, 255, 255, 0.3);
+
+        .project-link.source-link:hover {
+            background: linear-gradient(135deg, #45bdb5, #3c8f7f);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
         }
+
         .modal-links {
-    display flex;
-    gap 1rem;
-    margin 2.5rem 0;
-    flex-wrap wrap;
-}
+            display: flex;
+            gap: 1rem;
+            margin: 2.5rem 0;
+            flex-wrap: wrap;
+        }
 
-.demo-btn {
-    background linear-gradient(135deg, #667eea, #764ba2);
-    color white;
-    padding 0.8rem 1.6rem;
-    border-radius 20px;
-    text-decoration none;
-    font-weight 500;
-    transition all 0.3s ease;
-    border 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow 0 4px 15px rgba(102, 126, 234, 0.3);
-    display inline-flex;
-    align-items center;
-    gap 0.6rem;
-}
+        .demo-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.8rem 1.6rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
 
-.demo-btnhover {
-    background linear-gradient(135deg, #5a6fd8, #6a4190);
-    transform translateY(-2px);
-    box-shadow 0 6px 20px rgba(102, 126, 234, 0.4);
-    border-color rgba(255, 255, 255, 0.3);
-}
+        .demo-btn:hover {
+            background: linear-gradient(135deg, #5a6fd8, #6a4190);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
 
-.source-btn {
-    background linear-gradient(135deg, #4ecdc4, #44a08d);
-    color white;
-    padding 0.8rem 1.6rem;
-    border-radius 20px;
-    text-decoration none;
-    font-weight 500;
-    transition all 0.3s ease;
-    border 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow 0 4px 15px rgba(78, 205, 196, 0.3);
-    display inline-flex;
-    align-items center;
-    gap 0.6rem;
-}
+        .source-btn {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+            padding: 0.8rem 1.6rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
 
-.source-btnhover {
-    background linear-gradient(135deg, #45bdb5, #3c8f7f);
-    transform translateY(-2px);
-    box-shadow 0 6px 20px rgba(78, 205, 196, 0.4);
-    border-color rgba(255, 255, 255, 0.3);
-}
+        .source-btn:hover {
+            background: linear-gradient(135deg, #45bdb5, #3c8f7f);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
 
- Адаптивность для мобильных 
-@media (max-width 768px) {
-    .modal-links {
-        flex-direction column;
-    }
-    
-    .demo-btn, .source-btn {
-        justify-content center;
-        text-align center;
-    }
-}
-        nav a {
-            color rgba(255, 255, 255, 0.9);
-            text-decoration none;
-            font-weight 500;
-            padding 0.5rem 1.2rem;
-            border-radius 25px;
-            transition all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position relative;
-            overflow hidden;
-        }
-        
-        nav abefore {
-            content '';
-            position absolute;
-            top 0;
-            left -100%;
-            width 100%;
-            height 100%;
-            background linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition left 0.6s;
-        }
-        
-        nav ahoverbefore {
-            left 100%;
-        }
-        
-        nav ahover {
-            color white;
-            background rgba(255, 255, 255, 0.1);
-            transform translateY(-2px);
-            box-shadow 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .hero {
-            text-align center;
-            padding 6rem 0 4rem;
-            color white;
-        }
-        
-        .hero h1 {
-            font-size 3.2rem;
-            margin-bottom 1.5rem;
-            font-weight 800;
-            text-shadow 2px 2px 8px rgba(0,0,0,0.3);
-            animation fadeIn 1s ease-out;
-            background linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
-            -webkit-background-clip text;
-            -webkit-text-fill-color transparent;
-            background-clip text;
-        }
-        
-        .hero p {
-            font-size 1.3rem;
-            max-width 600px;
-            margin 0 auto;
-            opacity 0.9;
-            animation fadeIn 1.2s ease-out;
-            color rgba(255, 255, 255, 0.95);
-        }
-        
-        .filters {
-            display flex;
-            justify-content center;
-            margin-bottom 3rem;
-            flex-wrap wrap;
-            gap 1rem;
-            animation fadeIn 1.4s ease-out;
-        }
-        
-        .filter-btn {
-            background rgba(255, 255, 255, 0.08);
-            backdrop-filter blur(10px);
-            border 1px solid rgba(255, 255, 255, 0.15);
-            color rgba(255, 255, 255, 0.9);
-            padding 0.8rem 1.8rem;
-            border-radius 25px;
-            cursor pointer;
-            font-weight 500;
-            transition all 0.3s ease;
-        }
-        
-        .filter-btnhover {
-            background rgba(255, 255, 255, 0.15);
-            transform translateY(-2px);
-            box-shadow 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .filter-btn.active {
-            background linear-gradient(135deg, #ff6b6b, #4ecdc4);
-            border-color transparent;
-            color white;
-            box-shadow 0 5px 20px rgba(255, 107, 107, 0.4);
-        }
-        
-        .projects-grid {
-            display grid;
-            grid-template-columns repeat(auto-fit, minmax(350px, 1fr));
-            gap 2.5rem;
-            margin-bottom 5rem;
-        }
-        
-        .project-card {
-            background rgba(255, 255, 255, 0.08);
-            backdrop-filter blur(15px);
-            border 1px solid rgba(255, 255, 255, 0.12);
-            border-radius 20px;
-            overflow hidden;
-            transition all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            animation fadeIn 0.6s ease-out;
-        }
-        
-        .project-cardhover {
-            transform translateY(-12px) scale(1.02);
-            box-shadow 0 25px 50px rgba(0, 0, 0, 0.3);
-            border-color rgba(255, 255, 255, 0.25);
-        }
-        
-        .project-image {
-            width 100%;
-            height 220px;
-            object-fit cover;
-            transition transform 0.4s ease;
-        }
-        
-        .project-cardhover .project-image {
-            transform scale(1.08);
-        }
-        
-        .project-content {
-            padding 2rem;
-        }
-        
-        .project-title {
-            font-size 1.4rem;
-            margin-bottom 0.8rem;
-            color white;
-            font-weight 600;
-        }
-        
-        .project-category {
-            display inline-block;
-            background linear-gradient(135deg, #667eea, #764ba2);
-            color white;
-            padding 0.4rem 1rem;
-            border-radius 15px;
-            font-size 0.8rem;
-            margin-bottom 1rem;
-            font-weight 500;
-        }
-        
-        .project-description {
-            color rgba(255, 255, 255, 0.85);
-            margin-bottom 1.5rem;
-            line-height 1.6;
-            font-size 0.95rem;
-        }
-        
-        .project-link {
-            display inline-flex;
-            align-items center;
-            gap 0.6rem;
-            background rgba(255, 255, 255, 0.1);
-            color white;
-            padding 0.8rem 1.6rem;
-            border-radius 20px;
-            text-decoration none;
-            font-weight 500;
-            transition all 0.3s ease;
-            border 1px solid rgba(255, 255, 255, 0.15);
-        }
-        
-        .project-linkhover {
-            background rgba(255, 255, 255, 0.2);
-            transform translateY(-2px);
-            box-shadow 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .modal {
-            position fixed;
-            top 0;
-            left 0;
-            width 100%;
-            height 100%;
-            background rgba(0, 0, 0, 0.95);
-            display flex;
-            justify-content center;
-            align-items center;
-            z-index 2000;
-            opacity 0;
-            visibility hidden;
-            transition all 0.4s ease;
-        }
-        
-        .modal.open {
-            opacity 1;
-            visibility visible;
-        }
-        
-        .modal-content {
-            background rgba(255, 255, 255, 0.98);
-            width 90%;
-            max-width 900px;
-            border-radius 24px;
-            overflow hidden;
-            max-height 90vh;
-            overflow-y auto;
-            position relative;
-            transform scale(0.9);
-            transition transform 0.4s ease;
-            box-shadow 0 25px 50px rgba(0, 0, 0, 0.5);
-        }
-        
-        .modal.open .modal-content {
-            transform scale(1);
-        }
-        
-        .modal-close {
-            position absolute;
-            top 20px;
-            right 20px;
-            background rgba(0, 0, 0, 0.8);
-            color white;
-            width 42px;
-            height 42px;
-            border-radius 50%;
-            display flex;
-            justify-content center;
-            align-items center;
-            cursor pointer;
-            z-index 10;
-            transition all 0.3s ease;
-            border 2px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .modal-closehover {
-            transform rotate(90deg) scale(1.1);
-            background #ff6b6b;
-            border-color transparent;
-        }
-        
-        .modal-image {
-            width 100%;
-            max-height 380px;
-            object-fit cover;
-        }
-        
-        .modal-body {
-            padding 2.5rem;
-        }
-        
-        .modal-title {
-            font-size 2.2rem;
-            margin-bottom 1rem;
-            color #2d3748;
-            font-weight 700;
-            background linear-gradient(135deg, #2d3748, #4a5568);
-            -webkit-background-clip text;
-            -webkit-text-fill-color transparent;
-            background-clip text;
-        }
-        
-        .modal-category {
-            display inline-block;
-            background linear-gradient(135deg, #667eea, #764ba2);
-            color white;
-            padding 0.5rem 1.2rem;
-            border-radius 20px;
-            font-size 0.9rem;
-            margin-bottom 1.5rem;
-            font-weight 500;
-            box-shadow 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-        
-        .modal-description {
-            color #4a5568;
-            margin-bottom 2rem;
-            line-height 1.8;
-            font-size 1.1rem;
-            padding 1.5rem;
-            background rgba(102, 126, 234, 0.05);
-            border-radius 15px;
-            border-left 4px solid #667eea;
-        }
-        
-        .modal-links {
-            display flex;
-            gap 1rem;
-            margin 2.5rem 0;
-            flex-wrap wrap;
-        }
-        
-         Стили для лайков 
-        .like-section {
-            display flex;
-            align-items center;
-            gap 1rem;
-            margin 2rem 0;
-            padding 1.2rem;
-            background linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            border-radius 18px;
-            border 1px solid #e2e8f0;
-            box-shadow 0 4px 15px rgba(0, 0, 0, 0.08);
-        }
-        
-        .like-btn {
-            background none;
-            border 2px solid #e2e8f0;
-            color #718096;
-            padding 0.5rem 1rem;
-            border-radius 20px;
-            cursor pointer;
-            display flex;
-            align-items center;
-            gap 0.5rem;
-            font-weight 500;
-            transition all 0.3s ease;
-            font-size 0.9rem;
-            min-width 80px;
-            justify-content center;
-        }
-        
-        .like-btnhover {
-            border-color #667eea;
-            color #667eea;
-            transform translateY(-1px);
-            box-shadow 0 4px 12px rgba(102, 126, 234, 0.2);
-        }
-        
-        .like-btn.liked {
-            background linear-gradient(135deg, #ff6b6b, #ff8e8e);
-            border-color transparent;
-            color white;
-            box-shadow 0 4px 15px rgba(255, 107, 107, 0.3);
-        }
-        
-        .likes-count {
-            font-weight 600;
-            color #2d3748;
-            font-size 1.1rem;
-            min-width 30px;
-            text-align center;
-        }
-        
-         Стили для комментариев 
-        .comments-section {
-            margin-top 2.5rem;
-            padding 2.2rem;
-            background white;
-            border-radius 20px;
-            border 1px solid #e2e8f0;
-            box-shadow 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .comments-header {
-            display flex;
-            justify-content space-between;
-            align-items center;
-            margin-bottom 1.8rem;
-            padding-bottom 1rem;
-            border-bottom 2px solid #f7fafc;
-        }
-        
-        .comments-title {
-            font-size 1.5rem;
-            color #2d3748;
-            font-weight 600;
-            background linear-gradient(135deg, #2d3748, #4a5568);
-            -webkit-background-clip text;
-            -webkit-text-fill-color transparent;
-            background-clip text;
-        }
-        
-        .comment {
-            padding 1.5rem;
-            border-radius 16px;
-            background #f7fafc;
-            margin-bottom 1.2rem;
-            border 1px solid #e2e8f0;
-            transition all 0.3s ease;
-            animation fadeIn 0.5s ease-out;
-            position relative;
-        }
-        
-        .commenthover {
-            transform translateX(5px);
-            box-shadow 0 8px 20px rgba(0, 0, 0, 0.1);
-            border-color #cbd5e0;
-        }
-        
-        .comment-header {
-            display flex;
-            justify-content space-between;
-            align-items center;
-            margin-bottom 0.8rem;
-        }
-        
-        .comment-author {
-            font-weight 600;
-            color #2d3748;
-            font-size 1rem;
-            display flex;
-            align-items center;
-            gap 0.5rem;
-        }
-        
-        .comment-authorbefore {
-            content '👤';
-            font-size 0.9rem;
-        }
-        
-        .comment-date {
-            font-size 0.8rem;
-            color #718096;
-        }
-        
-        .comment-text {
-            color #4a5568;
-            line-height 1.6;
-            margin-bottom 1rem;
-            padding 0.8rem;
-            background white;
-            border-radius 12px;
-            border-left 3px solid #667eea;
-        }
-        
-        .comment-actions {
-            display flex;
-            gap 1rem;
-            justify-content flex-end;
-        }
-        
-        .delete-btn {
-            background linear-gradient(135deg, #fed7d7, #feb2b2);
-            border none;
-            color #c53030;
-            cursor pointer;
-            padding 0.5rem 1rem;
-            border-radius 10px;
-            font-size 0.8rem;
-            font-weight 500;
-            transition all 0.3s ease;
-            display flex;
-            align-items center;
-            gap 0.4rem;
-        }
-        
-        .delete-btnhover {
-            background linear-gradient(135deg, #feb2b2, #fc8181);
-            transform translateY(-1px);
-            box-shadow 0 4px 12px rgba(245, 101, 101, 0.3);
-        }
-        
-        .no-comments {
-            text-align center;
-            color #a0aec0;
-            font-style italic;
-            padding 3rem;
-            background #f7fafc;
-            border-radius 16px;
-            border 2px dashed #e2e8f0;
-        }
-        
-        .add-comment {
-            margin-top 2.5rem;
-            padding 2.2rem;
-            background linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            border-radius 20px;
-            border 1px solid #e2e8f0;
-            box-shadow 0 8px 25px rgba(0, 0, 0, 0.08);
-        }
-        
-        .add-comment h4 {
-            margin-bottom 1.5rem;
-            color #2d3748;
-            font-size 1.3rem;
-            font-weight 600;
-        }
-        
-        .form-group {
-            margin-bottom 1.5rem;
-        }
-        
-        .form-group label {
-            display block;
-            margin-bottom 0.6rem;
-            font-weight 600;
-            color #2d3748;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width 100%;
-            padding 1rem 1.2rem;
-            border 2px solid #e2e8f0;
-            border-radius 12px;
-            font-size 1rem;
-            transition all 0.3s ease;
-            background white;
-        }
-        
-        .form-group inputfocus,
-        .form-group textareafocus {
-            outline none;
-            border-color #667eea;
-            box-shadow 0 0 0 3px rgba(102, 126, 234, 0.1);
-            transform translateY(-1px);
-        }
-        
-        .submit-btn {
-            background linear-gradient(135deg, #667eea, #764ba2);
-            color white;
-            padding 1rem 2rem;
-            border none;
-            border-radius 15px;
-            cursor pointer;
-            font-size 1rem;
-            font-weight 600;
-            transition all 0.3s ease;
-            display flex;
-            align-items center;
-            gap 0.6rem;
-        }
-        
-        .submit-btnhover {
-            transform translateY(-2px);
-            box-shadow 0 12px 30px rgba(102, 126, 234, 0.4);
-        }
-        
-        footer {
-            background rgba(0, 0, 0, 0.85);
-            color white;
-            padding 3.5rem 0;
-            text-align center;
-            margin-top 5rem;
-        }
-        
-        .footer-content {
-            display flex;
-            flex-direction column;
-            align-items center;
-            gap 2rem;
-        }
-        
-        .social-links {
-            display flex;
-            gap 1.5rem;
-            flex-wrap wrap;
-            justify-content center;
-        }
-        
-        .social-links a {
-            display flex;
-            align-items center;
-            justify-content center;
-            width 55px;
-            height 55px;
-            border-radius 50%;
-            color white;
-            font-size 1.4rem;
-            transition all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration none;
-            position relative;
-            overflow hidden;
-        }
-        
-        .social-links abefore {
-            content '';
-            position absolute;
-            top 0;
-            left -100%;
-            width 100%;
-            height 100%;
-            background linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition left 0.6s;
-        }
-        
-        .social-links ahoverbefore {
-            left 100%;
-        }
-        
-        .social-links ahover {
-            transform translateY(-8px) scale(1.15);
-            box-shadow 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .youtube-btn { 
-            background linear-gradient(135deg, #ff0000, #cc0000);
-            box-shadow 0 6px 20px rgba(255, 0, 0, 0.3);
-        }
-        .rutube-btn { 
-            background linear-gradient(135deg, #ff8c00, #ff5500);
-            box-shadow 0 6px 20px rgba(255, 140, 0, 0.3);
-        }
-        .telegram-btn { 
-            background linear-gradient(135deg, #0088cc, #005580);
-            box-shadow 0 6px 20px rgba(0, 136, 204, 0.3);
-        }
-        .github-btn { 
-            background linear-gradient(135deg, #333, #000);
-            box-shadow 0 6px 20px rgba(0, 0, 0, 0.4);
-        }
-        
-        .footer-text {
-            color rgba(255, 255, 255, 0.8);
-            font-size 1.1rem;
-            max-width 500px;
-            margin 0 auto;
-        }
-        
-        @media (max-width 768px) {
-            .header-content {
-                flex-direction column;
-                gap 1.2rem;
-            }
-            
-            nav ul {
-                gap 1rem;
-                flex-wrap wrap;
-                justify-content center;
-            }
-            
-            .hero h1 {
-                font-size 2.3rem;
-            }
-            
-            .hero p {
-                font-size 1.1rem;
-                padding 0 1rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns 1fr;
-                gap 2rem;
-            }
-            
-            .modal-content {
-                width 95%;
-                margin 1rem;
-            }
-            
-            .modal-body {
-                padding 1.8rem;
-            }
-            
-            .modal-title {
-                font-size 1.8rem;
-            }
-            
+        /* Адаптивность для мобильных */
+        @media (max-width: 768px) {
             .modal-links {
-                flex-direction column;
+                flex-direction: column;
             }
-            
-            .social-links {
-                gap 1.2rem;
-            }
-            
-            .social-links a {
-                width 50px;
-                height 50px;
-                font-size 1.2rem;
+            .demo-btn, .source-btn {
+                justify-content: center;
+                text-align: center;
             }
         }
-    style
-head
-body
-    div id=rootdiv
 
-    script type=textbabel
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        nav a:hover:before {
+            left: 100%;
+        }
+
+        nav a:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 6rem 0 4rem;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            animation: fadeIn 1s ease-out;
+            background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+            animation: fadeIn 1.2s ease-out;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+            animation: fadeIn 1.4s ease-out;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0.8rem 1.8rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.08);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .project-category {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .project-description {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.8rem 1.6rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .project-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.98);
+            width: 90%;
+            max-width: 900px;
+            border-radius: 24px;
+            overflow: hidden;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.open .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: #ff6b6b;
+            border-color: transparent;
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 380px;
+            object-fit: cover;
+        }
+
+        .modal-body {
+            padding: 2.5rem;
+        }
+
+        .modal-title {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2d3748, #4a5568);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal-category {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .modal-description {
+            color: #4a5568;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            padding: 1.5rem;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .modal-links {
+            display: flex;
+            gap: 1rem;
+            margin: 2.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        /* Стили для лайков */
+        .like-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .like-btn {
+            background: none;
+            border: 2px solid #e2e8f0;
+            color: #718096;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            min-width: 80px;
+            justify-content: center;
+        }
+
+        .like-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .like-btn.liked {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .likes-count {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 1.1rem;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* Стили для комментариев */
+        .comments-section {
+            margin-top: 2.5rem;
+            padding: 2.2rem;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .comments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.8rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f7fafc;
+        }
+
+        .comments-title {
+            font-size: 1.5rem;
+            color: #2d3748;
+            font-weight: 600;
+            background: linear-gradient(135deg, #2d3748, #4a5568);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .comment {
+            padding: 1.5rem;
+            border-radius: 16px;
+            background: #f7fafc;
+            margin-bottom: 1.2rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease-out;
+            position: relative;
+        }
+
+        .comment:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: #cbd5e0;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .comment-author:before {
+            content: '👤';
+            font-size: 0.9rem;
+        }
+
+        .comment-date {
+            font-size: 0.8rem;
+            color: #718096;
+        }
+
+        .comment-text {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: white;
+            border-radius: 12px;
+            border-left: 3px solid #667eea;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .delete-btn {
+            background: linear-gradient(135deg, #fed7d7, #feb2b2);
+            border: none;
+            color: #c53030;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .delete-btn:hover {
+            background: linear-gradient(135deg, #feb2b2, #fc8181);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(245, 101, 101, 0.3);
+        }
+
+        .no-comments {
+            text-align: center;
+            color: #a0aec0;
+            font-style: italic;
+            padding: 3rem;
+            background: #f7fafc;
+            border-radius: 16px;
+            border: 2px dashed #e2e8f0;
+        }
+
+        .add-comment {
+            margin-top: 2.5rem;
+            padding: 2.2rem;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .add-comment h4 {
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 3.5rem 0;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.4rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .social-links a:hover:before {
+            left: 100%;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-8px) scale(1.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .youtube-btn {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .rutube-btn {
+            background: linear-gradient(135deg, #ff8c00, #ff5500);
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.3);
+        }
+
+        .telegram-btn {
+            background: linear-gradient(135deg, #0088cc, #005580);
+            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.3);
+        }
+
+        .github-btn {
+            background: linear-gradient(135deg, #333, #000);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .modal-content {
+                width: 95%;
+                margin: 1rem;
+            }
+            .modal-body {
+                padding: 1.8rem;
+            }
+            .modal-title {
+                font-size: 1.8rem;
+            }
+            .modal-links {
+                flex-direction: column;
+            }
+            .social-links {
+                gap: 1.2rem;
+            }
+            .social-links a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
         const { useState, useEffect } = React;
 
-         Данные проектов
+        // Данные проектов
         const projectsData = [
             {
-                id 1,
-                title HolyC,
-                category Языки программирования,
-                description HolyC — язык программирования, разработанный Терри А. Дэвисом специально для операционной системы TempleOS. Это расширение языка C с дополнительными функциями, адаптированными для TempleOS.,
-                image httpsupload.wikimedia.orgwikipediacommonsthumb333HolyC_Logo.svg612px-HolyC_Logo.svg.png,
-                demoLink httpsholyc-lang.com,
-                sourceLink #
+                id: 1,
+                title: 'HolyC',
+                category: 'Языки программирования',
+                description: 'HolyC — язык программирования, разработанный Терри А. Дэвисом специально для операционной системы TempleOS. Это расширение языка C с дополнительными функциями, адаптированными для TempleOS.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/HolyC_Logo.svg/612px-HolyC_Logo.svg.png',
+                demoLink: 'https://holyc-lang.com',
+                sourceLink: '#'
             },
             {
-                id 2,
-                title Евгений Касперский,
-                category Выдающиеся личности,
-                description Российский предприниматель, специалист в области информационной безопасности. Создатель антивирусного программного обеспечения «Антивирус Касперского».,
-                image httpsavatars.mds.yandex.netiid=f4754044c6b6151563d24050b371a9eb_l-5247648-images-thumbs&n=13,
-                demoLink httpsru.wikipedia.orgwikiКасперский,_Евгений_Валентинович,
-                sourceLink #
+                id: 2,
+                title: 'Евгений Касперский',
+                category: 'Выдающиеся личности',
+                description: 'Российский предприниматель, специалист в области информационной безопасности. Создатель антивирусного программного обеспечения «Антивирус Касперского».',
+                image: 'https://avatars.mds.yandex.net/i?id=f4754044c6b6151563d24050b371a9eb_l-5247648-images-thumbs&n=13',
+                demoLink: 'https://ru.wikipedia.org/wiki/Касперский,_Евгений_Валентинович',
+                sourceLink: '#'
             },
             {
-                id 3,
-                title Khoj AI,
-                category Искусственный интеллект,
-                description Khoj — это персональный ИИ, который помогает вам стать продуктивнее и эффективнее. Он легко масштабируется от простого устройства до уровня корпоративного облачного ИИ.,
-                image httpsavatars.mds.yandex.netiid=6c0779b78135e13eedde43e2f082b5770b592ee9-16749353-images-thumbs&n=13,
-                demoLink httpshabr.comruarticles875088,
-                sourceLink httpsgithub.comkhoj-aikhoj
+                id: 3,
+                title: 'Khoj AI',
+                category: 'Искусственный интеллект',
+                description: 'Khoj — это персональный ИИ, который помогает вам стать продуктивнее и эффективнее. Он легко масштабируется от простого устройства до уровня корпоративного облачного ИИ.',
+                image: 'https://avatars.mds.yandex.net/i?id=6c0779b78135e13eedde43e2f082b5770b592ee9-16749353-images-thumbs&n=13',
+                demoLink: 'https://habr.com/ru/articles/875088',
+                sourceLink: 'https://github.com/khoj-ai/khoj'
             },
             {
-                id 4,
-                title Deep Blue,
-                category Искусственный интеллект,
-                description Шахматный компьютер, разработанный IBM. Самое известное достижение — победа над чемпионом мира по шахматам Гарри Каспаровым в матче 1997 года.,
-                image httpsavatars.mds.yandex.netiid=11a9aaa87de167f7dc8b6f3738fc3182_l-8339189-images-thumbs&n=13,
-                demoLink httpsru.wikipedia.orgwikiDeep_Blue,
-                sourceLink #
+                id: 4,
+                title: 'Deep Blue',
+                category: 'Искусственный интеллект',
+                description: 'Шахматный компьютер, разработанный IBM. Самое известное достижение — победа над чемпионом мира по шахматам Гарри Каспаровым в матче 1997 года.',
+                image: 'https://avatars.mds.yandex.net/i?id=11a9aaa87de167f7dc8b6f3738fc3182_l-8339189-images-thumbs&n=13',
+                demoLink: 'https://ru.wikipedia.org/wiki/Deep_Blue',
+                sourceLink: '#'
             },
             {
-                id 5,
-                title Кибербезопасность,
-                category Безопасность,
-                description Защита компьютерных систем, сетей, программ и данных от киберугроз. Цель — обеспечить конфиденциальность, целостность и доступность информации.,
-                image httpsavatars.mds.yandex.netiid=794f1efb8052e4ae2e10235697201a9e_l-5276454-images-thumbs&n=13,
-                demoLink httpswww.arsis.rublogcyber-security,
-                sourceLink #
+                id: 5,
+                title: 'Кибербезопасность',
+                category: 'Безопасность',
+                description: 'Защита компьютерных систем, сетей, программ и данных от киберугроз. Цель — обеспечить конфиденциальность, целостность и доступность информации.',
+                image: 'https://avatars.mds.yandex.net/i?id=794f1efb8052e4ae2e10235697201a9e_l-5276454-images-thumbs&n=13',
+                demoLink: 'https://www.arsis.ru/blog/cyber-security',
+                sourceLink: '#'
             },
             {
-                id 6,
-                title Аналитика данных,
-                category Данные и аналитика,
-                description Аналитик данных — специалист, который собирает, обрабатывает и интерпретирует большие объемы информации для принятия обоснованных решений.,
-                image httpsimageio.forbes.comspecials-imagesimageserve5d1c921534a5c400084a59730x0.jpgformat=jpg&amp;height=600&amp;width=1200&amp;fit=bounds,
-                demoLink httpshabr.comrucompanieshabr_careerarticles917314,
-                sourceLink #
+                id: 6,
+                title: 'Аналитика данных',
+                category: 'Данные и аналитика',
+                description: 'Аналитик данных — специалист, который собирает, обрабатывает и интерпретирует большие объемы информации для принятия обоснованных решений.',
+                image: 'https://imageio.forbes.com/specials-images/imageserve/5d1c921534a5c400084a5973/0x0.jpg?format=jpg&height=600&width=1200&fit=bounds',
+                demoLink: 'https://habr.com/ru/companies/habr_career/articles/917314',
+                sourceLink: '#'
             },
-        
         ];
 
-         Функции для работы с localStorage
+        // Функции для работы с localStorage
         const storage = {
-            get (key) = {
+            get: (key) => {
                 try {
                     const item = localStorage.getItem(key);
-                    return item  JSON.parse(item)  null;
+                    return item ? JSON.parse(item) : null;
                 } catch {
                     return null;
                 }
             },
-            
-            set (key, value) = {
+            set: (key, value) => {
                 try {
                     localStorage.setItem(key, JSON.stringify(value));
                     return true;
@@ -964,24 +942,24 @@ body
             }
         };
 
-         Компонент карточки проекта
+        // Компонент карточки проекта
         function ProjectCard({ project, onOpen }) {
             return (
-                div className=project-card animate-fadeIn
-                    img src={project.image} alt={project.title} className=project-image 
-                    div className=project-content
-                        h3 className=project-title{project.title}h3
-                        span className=project-category{project.category}span
-                        p className=project-description{project.description.substring(0, 100)}...p
-                        button className=project-link onClick={() = onOpen(project)}
-                            i className=fas fa-eyei Подробнее
-                        button
-                    div
-                div
+                <div className="project-card animate-fadeIn">
+                    <img src={project.image} alt={project.title} className="project-image" />
+                    <div className="project-content">
+                        <h3 className="project-title">{project.title}</h3>
+                        <span className="project-category">{project.category}</span>
+                        <p className="project-description">{project.description.substring(0, 100)}...</p>
+                        <button className="project-link" onClick={() => onOpen(project)}>
+                            <i className="fas fa-eye"></i> Подробнее
+                        </button>
+                    </div>
+                </div>
             );
         }
 
-         Компонент модального окна
+        // Компонент модального окна
         function Modal({ project, isOpen, onClose }) {
             const [comments, setComments] = useState([]);
             const [commentAuthor, setCommentAuthor] = useState('');
@@ -990,284 +968,283 @@ body
             const [isLiked, setIsLiked] = useState(false);
             const [heartBeat, setHeartBeat] = useState(false);
 
-            useEffect(() = {
+            useEffect(() => {
                 if (isOpen && project) {
-                    const savedComments = storage.get(`project_${project.id}_comments`)  [];
+                    const savedComments = storage.get(`project_${project.id}_comments`) || [];
                     setComments(savedComments);
-                    
-                    const savedLikes = storage.get(`project_${project.id}_likes`)  { count 0, users [] };
+
+                    const savedLikes = storage.get(`project_${project.id}_likes`) || { count: 0, users: [] };
                     setLikesCount(savedLikes.count);
-                    
-                    const userId = storage.get('user_id')  `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-                    storage.set('user_id', userId);
+
+                    let userId = storage.get('user_id');
+                    if (!userId) {
+                        userId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+                        storage.set('user_id', userId);
+                    }
                     setIsLiked(savedLikes.users.includes(userId));
                 }
             }, [isOpen, project]);
 
-            const handleCommentSubmit = (e) = {
+            const handleCommentSubmit = (e) => {
                 e.preventDefault();
                 if (commentAuthor && commentText) {
                     const newComment = {
-                        id Date.now(),
-                        author commentAuthor,
-                        text commentText,
-                        date new Date().toISOString(),
-                        projectId project.id
+                        id: Date.now(),
+                        author: commentAuthor,
+                        text: commentText,
+                        date: new Date().toISOString(),
+                        projectId: project.id
                     };
-                    
                     const updatedComments = [...comments, newComment];
                     setComments(updatedComments);
                     storage.set(`project_${project.id}_comments`, updatedComments);
-                    
                     setCommentAuthor('');
                     setCommentText('');
                 }
             };
 
-            const handleDeleteComment = (commentId) = {
-                if (window.confirm('Удалить этот комментарий')) {
-                    const updatedComments = comments.filter(comment = comment.id !== commentId);
+            const handleDeleteComment = (commentId) => {
+                if (window.confirm('Удалить этот комментарий?')) {
+                    const updatedComments = comments.filter(comment => comment.id !== commentId);
                     setComments(updatedComments);
                     storage.set(`project_${project.id}_comments`, updatedComments);
                 }
             };
 
-            const handleLike = () = {
+            const handleLike = () => {
                 const userId = storage.get('user_id');
-                const savedLikes = storage.get(`project_${project.id}_likes`)  { count 0, users [] };
-                
+                const savedLikes = storage.get(`project_${project.id}_likes`) || { count: 0, users: [] };
                 let updatedLikes;
+
                 if (isLiked) {
                     updatedLikes = {
-                        count savedLikes.count - 1,
-                        users savedLikes.users.filter(id = id !== userId)
+                        count: savedLikes.count - 1,
+                        users: savedLikes.users.filter(id => id !== userId)
                     };
                 } else {
                     updatedLikes = {
-                        count savedLikes.count + 1,
-                        users [...savedLikes.users, userId]
+                        count: savedLikes.count + 1,
+                        users: [...savedLikes.users, userId]
                     };
                     setHeartBeat(true);
-                    setTimeout(() = setHeartBeat(false), 1000);
+                    setTimeout(() => setHeartBeat(false), 1000);
                 }
-                
+
                 setLikesCount(updatedLikes.count);
                 setIsLiked(!isLiked);
                 storage.set(`project_${project.id}_likes`, updatedLikes);
             };
 
-            if (!isOpen  !project) return null;
-            
+            if (!isOpen || !project) return null;
+
             return (
-                div className={`modal ${isOpen  'open'  ''}`}
-                    div className=modal-content
-                        div className=modal-close onClick={onClose}
-                            i className=fas fa-timesi
-                        div
-                        img src={project.image} alt={project.title} className=modal-image 
-                        div className=modal-body
-                            h2 className=modal-title{project.title}h2
-                            span className=modal-category{project.category}span
-                            
-                            div className=like-section
-                                button className={`like-btn ${isLiked  'liked'  ''} ${heartBeat  'heart-beat'  ''}`} onClick={handleLike}
-                                    i className={`fas ${isLiked  'fa-heart'  'fa-heart'}`}i
-                                    {isLiked  'Понравилось'  'Нравится'}
-                                button
-                                span className=likes-count{likesCount}span
-                            div
+                <div className={`modal ${isOpen ? 'open' : ''}`}>
+                    <div className="modal-content">
+                        <div className="modal-close" onClick={onClose}>
+                            <i className="fas fa-times"></i>
+                        </div>
+                        <img src={project.image} alt={project.title} className="modal-image" />
+                        <div className="modal-body">
+                            <h2 className="modal-title">{project.title}</h2>
+                            <span className="modal-category">{project.category}</span>
 
-                            p className=modal-description{project.description}p
+                            <div className="like-section">
+                                <button className={`like-btn ${isLiked ? 'liked' : ''} ${heartBeat ? 'heart-beat' : ''}`} onClick={handleLike}>
+                                    <i className={`fas ${isLiked ? 'fa-heart' : 'fa-heart'}`}></i> {isLiked ? 'Понравилось' : 'Нравится'}
+                                </button>
+                                <span className="likes-count">{likesCount}</span>
+                            </div>
 
-                            div className=comments-section
-                                div className=comments-header
-                                    h3 className=comments-titleКомментарии ({comments.length})h3
-                                div
-                                
-                                {comments.length === 0  (
-                                    div className=no-comments
-                                        i className=fas fa-comments style={{fontSize '2rem', marginBottom '1rem', opacity 0.5}}i
-                                        pПока нет комментариев. Будьте первым!p
-                                    div
-                                )  (
-                                    comments.map(comment = (
-                                        div key={comment.id} className=comment 
-                                            div className=comment-header
-                                                span className=comment-author{comment.author}span
-                                                span className=comment-date
+                            <p className="modal-description">{project.description}</p>
+
+                            <div className="comments-section">
+                                <div className="comments-header">
+                                    <h3 className="comments-title">Комментарии ({comments.length})</h3>
+                                </div>
+
+                                {comments.length === 0 ? (
+                                    <div className="no-comments">
+                                        <i className="fas fa-comments" style={{fontSize: '2rem', marginBottom: '1rem', opacity: 0.5}}></i>
+                                        <p>Пока нет комментариев. Будьте первым!</p>
+                                    </div>
+                                ) : (
+                                    comments.map(comment => (
+                                        <div key={comment.id} className="comment">
+                                            <div className="comment-header">
+                                                <span className="comment-author">{comment.author}</span>
+                                                <span className="comment-date">
                                                     {new Date(comment.date).toLocaleDateString('ru-RU', {
-                                                        year 'numeric',
-                                                        month 'long',
-                                                        day 'numeric',
-                                                        hour '2-digit',
-                                                        minute '2-digit'
+                                                        year: 'numeric',
+                                                        month: 'long',
+                                                        day: 'numeric',
+                                                        hour: '2-digit',
+                                                        minute: '2-digit'
                                                     })}
-                                                span
-                                            div
-                                            p className=comment-text{comment.text}p
-                                            div className=comment-actions
-                                                button className=delete-btn onClick={() = handleDeleteComment(comment.id)}
-                                                    i className=fas fa-trashi Удалить
-                                                button
-                                            div
-                                        div
+                                                </span>
+                                            </div>
+                                            <p className="comment-text">{comment.text}</p>
+                                            <div className="comment-actions">
+                                                <button className="delete-btn" onClick={() => handleDeleteComment(comment.id)}>
+                                                    <i className="fas fa-trash"></i> Удалить
+                                                </button>
+                                            </div>
+                                        </div>
                                     ))
                                 )}
 
-                                div className=add-comment
-                                    h4Добавить комментарийh4
-                                    form onSubmit={handleCommentSubmit}
-                                        div className=form-group
-                                            label htmlFor=authorВаше имяlabel
-                                            input
-                                                type=text
-                                                id=author
+                                <div className="add-comment">
+                                    <h4>Добавить комментарий</h4>
+                                    <form onSubmit={handleCommentSubmit}>
+                                        <div className="form-group">
+                                            <label htmlFor="author">Ваше имя</label>
+                                            <input
+                                                type="text"
+                                                id="author"
                                                 value={commentAuthor}
-                                                onChange={(e) = setCommentAuthor(e.target.value)}
+                                                onChange={(e) => setCommentAuthor(e.target.value)}
                                                 required
-                                                placeholder=Введите ваше имя
-                                            
-                                        div
-                                        div className=form-group
-                                            label htmlFor=commentTextКомментарийlabel
-                                            textarea
-                                                id=commentText
+                                                placeholder="Введите ваше имя"
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="commentText">Комментарий</label>
+                                            <textarea
+                                                id="commentText"
                                                 value={commentText}
-                                                onChange={(e) = setCommentText(e.target.value)}
+                                                onChange={(e) => setCommentText(e.target.value)}
                                                 required
-                                                rows=4
-                                                placeholder=Напишите ваш комментарий...
-                                            
-                                        div
-                                        button type=submit className=submit-btn
-                                            i className=fas fa-paper-planei Отправить комментарий
-                                        button
-                                    form
-                                div
-                            div
+                                                rows="4"
+                                                placeholder="Напишите ваш комментарий..."
+                                            ></textarea>
+                                        </div>
+                                        <button type="submit" className="submit-btn">
+                                            <i className="fas fa-paper-plane"></i> Отправить комментарий
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
 
-                            div className=modal-links
-                                a href={project.demoLink} className=demo-btn target=_blank rel=noopener noreferrer
-                                    i className=fas fa-external-link-alti Демо
-                                    a
+                            <div className="modal-links">
+                                <a href={project.demoLink} className="demo-btn" target="_blank" rel="noopener noreferrer">
+                                    <i className="fas fa-external-link-alt"></i> Демо
+                                </a>
                                 {project.sourceLink && project.sourceLink !== '#' && (
-                                    a href={project.sourceLink} className=source-btn target=_blank rel=noopener noreferrer
-                                        i className=fab fa-githubi Исходный код
-                                    a
+                                    <a href={project.sourceLink} className="source-btn" target="_blank" rel="noopener noreferrer">
+                                        <i className="fab fa-github"></i> Исходный код
+                                    </a>
                                 )}
-                            div
-                        div
-                    div
-                div
+                            </div>
+                        </div>
+                    </div>
+                </div>
             );
         }
 
-         Главный компонент приложения
+        // Главный компонент приложения
         function App() {
             const [activeFilter, setActiveFilter] = useState('Все');
             const [modalOpen, setModalOpen] = useState(false);
             const [selectedProject, setSelectedProject] = useState(null);
-            
-            const categories = ['Все', ...new Set(projectsData.map(project = project.category))];
-            
-            const filteredProjects = activeFilter === 'Все' 
-                 projectsData 
-                 projectsData.filter(project = project.category === activeFilter);
-            
-            const handleOpenModal = (project) = {
+
+            const categories = ['Все', ...new Set(projectsData.map(project => project.category))];
+            const filteredProjects = activeFilter === 'Все' ? projectsData : projectsData.filter(project => project.category === activeFilter);
+
+            const handleOpenModal = (project) => {
                 setSelectedProject(project);
                 setModalOpen(true);
             };
-            
-            const handleCloseModal = () = {
+
+            const handleCloseModal = () => {
                 setModalOpen(false);
                 setSelectedProject(null);
             };
-            
+
             return (
-                div
-                    header
-                        div className=container header-content
-                            div className=logo animate-slideInTechPortfoliodiv
-                            nav
-                                ul
-                                    lia href=#projectsПроектыali
-                                    lia href=#contactКонтактыali
-                                ul
-                            nav
-                        div
-                    header
-                    
-                    main
-                        section className=hero
-                            div className=container
-                                h1IT Проекты и Исследованияh1
-                                pПлатформа для демонстрации интересных IT проектов, технологий и исследованийp
-                            div
-                        section
-                        
-                        section id=projects
-                            div className=container
-                                div className=filters
-                                    {categories.map(category = (
-                                        button
+                <div>
+                    <header>
+                        <div className="container header-content">
+                            <div className="logo animate-slideIn">TechPortfolio</div>
+                            <nav>
+                                <ul>
+                                    <li><a href="#projects">Проекты</a></li>
+                                    <li><a href="#contact">Контакты</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </header>
+
+                    <main>
+                        <section className="hero">
+                            <div className="container">
+                                <h1>IT Проекты и Исследования</h1>
+                                <p>Платформа для демонстрации интересных IT проектов, технологий и исследований</p>
+                            </div>
+                        </section>
+
+                        <section id="projects">
+                            <div className="container">
+                                <div className="filters">
+                                    {categories.map(category => (
+                                        <button
                                             key={category}
-                                            className={`filter-btn ${activeFilter === category  'active'  ''}`}
-                                            onClick={() = setActiveFilter(category)}
-                                        
+                                            className={`filter-btn ${activeFilter === category ? 'active' : ''}`}
+                                            onClick={() => setActiveFilter(category)}
+                                        >
                                             {category}
-                                        button
+                                        </button>
                                     ))}
-                                div
-                                
-                                div className=projects-grid
-                                    {filteredProjects.map(project = (
-                                        ProjectCard
+                                </div>
+
+                                <div className="projects-grid">
+                                    {filteredProjects.map(project => (
+                                        <ProjectCard
                                             key={project.id}
                                             project={project}
                                             onOpen={handleOpenModal}
-                                        
+                                        />
                                     ))}
-                                div
-                            div
-                        section
-                    main
-                                  
-                    footer id=contact
-                        div className=container footer-content
-                            h2Свяжитесь с намиh2
-                            p className=footer-textПодписывайтесь на наши социальные сети чтобы быть в курсе новых проектов и обновленийp
-                            div className=social-links
-                                a href=httpswww.youtube.com className=youtube-btn target=_blank rel=noopener noreferrer title=YouTube
-                                    i className=fab fa-youtubei
-                                a
-                                a href=httpsrutube.ru className=rutube-btn target=_blank rel=noopener noreferrer title=Rutube
-                                    i className=fas fa-play-circlei
-                                a
-                                a href=httpst.meapt028 className=telegram-btn target=_blank rel=noopener noreferrer title=Telegram
-                                    i className=fab fa-telegrami
-                                a
-                                a href=httpsgithub.com className=github-btn target=_blank rel=noopener noreferrer title=GitHub
-                                    i className=fab fa-githubi
-                                a
-                            div
-                            p© 2025 TechPortfolio. Все права защищены.p
-                        div
-                    footer
-                    
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+
+                    <footer id="contact">
+                        <div className="container">
+                            <div className="footer-content">
+                                <h2>Свяжитесь с нами</h2>
+                                <p className="footer-text">Подписывайтесь на наши социальные сети чтобы быть в курсе новых проектов и обновлений</p>
+                                <div className="social-links">
+                                    <a href="https://www.youtube.com" className="youtube-btn" target="_blank" rel="noopener noreferrer" title="YouTube">
+                                        <i className="fab fa-youtube"></i>
+                                    </a>
+                                    <a href="https://rutube.ru" className="rutube-btn" target="_blank" rel="noopener noreferrer" title="Rutube">
+                                        <i className="fas fa-play-circle"></i>
+                                    </a>
+                                    <a href="https://t.me/apt028" className="telegram-btn" target="_blank" rel="noopener noreferrer" title="Telegram">
+                                        <i className="fab fa-telegram"></i>
+                                    </a>
+                                    <a href="https://github.com" className="github-btn" target="_blank" rel="noopener noreferrer" title="GitHub">
+                                        <i className="fab fa-github"></i>
+                                    </a>
+                                </div>
+                                <p>© 2025 TechPortfolio. Все права защищены.</p>
+                            </div>
+                        </div>
+                    </footer>
+
                     {selectedProject && (
-                        Modal
+                        <Modal
                             project={selectedProject}
                             isOpen={modalOpen}
                             onClose={handleCloseModal}
-                        
+                        />
                     )}
-                div
+                </div>
             );
         }
 
-         Рендерим приложение
-        ReactDOM.render(App , document.getElementById('root'));
-    script
-body
-html
+        // Рендерим приложение
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
