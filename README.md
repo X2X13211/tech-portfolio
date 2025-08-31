@@ -4,7 +4,7 @@
 ![React](https://img.shields.io/badge/React-18.2-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-🌐 **Живая версия сайта:** [https://x2x13211.github.io/tech-portfolio1/](https://x2x13211.github.io/tech-portfolio1/)
+🌐 **Живая версия сайта:** [https://x2x13211.github.io/tech-portfolio/](https://x2x13211.github.io/tech-portfolio/)
 
 ## 🚀 О проекте
 
